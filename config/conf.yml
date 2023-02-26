@@ -1,0 +1,16 @@
+runMode: debug
+port: :8090
+mysql: root:password@tcp(127.0.0.1:3306)/chess_card?charset=utf8mb4&parseTime=True&loc=Local&
+redis:
+  addr: 127.0.0.1:6379
+  passwd: "password"
+  db: 0
+mongodb:
+  addr: "mongodb://root:password@127.0.0.1:27016/?authMechanism=SCRAM-SHA-1"
+
+log:
+  level: info
+  apiLogPath: ./log/
+  apiLogFile: apiLog.log
+  sysLogPath: ./log/
+  sysLogFile: sysLog.log
