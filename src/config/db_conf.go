@@ -1,7 +1,7 @@
 package config
 
 import (
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
@@ -13,7 +13,7 @@ var Db *gorm.DB
 func DBClient() {
 	//连接数据库 sqlite
 	err := recover()
-	Db, err = gorm.Open(sqlite.Open(Yml.Mysql), &gorm.Config{
+	Db, err = gorm.Open(mysql.Open(Yml.Mysql), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{
 			SingularTable: true, // 使用单数表名
 		},

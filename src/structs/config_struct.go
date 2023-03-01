@@ -5,8 +5,13 @@ import "github.com/sirupsen/logrus"
 type Conf struct {
 	RunMode string `yaml:"runMode"`
 	Port    string `yaml:"port"`
-	Mysql   string `yaml:"mysql"`
-	Redis   struct {
+	Etcd    struct {
+		Addr string `yaml:"addr"`
+		Name string `yaml:"name"`
+		Pass string `yaml:"pass"`
+	}
+	Mysql string `yaml:"mysql"`
+	Redis struct {
 		Addr   string `yaml:"addr"`
 		Passwd string `yaml:"passwd"`
 		Db     int    `yaml:"db"`
