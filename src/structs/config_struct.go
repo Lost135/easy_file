@@ -6,14 +6,14 @@ type Conf struct {
 	RunMode string `yaml:"runMode"`
 	Port    string `yaml:"port"`
 	Etcd    struct {
-		Addr string `yaml:"addr"`
+		Addr string `yaml:"address"`
 		Name string `yaml:"name"`
-		Pass string `yaml:"pass"`
+		Pass string `yaml:"password"`
 	}
 	Mysql string `yaml:"mysql"`
 	Redis struct {
-		Addr   string `yaml:"addr"`
-		Passwd string `yaml:"passwd"`
+		Addr   string `yaml:"address"`
+		Passwd string `yaml:"password"`
 		Db     int    `yaml:"db"`
 	}
 	Mongodb struct {
