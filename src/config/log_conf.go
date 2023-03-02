@@ -1,12 +1,14 @@
 package config
 
 import (
+	"easy_file/src/common"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"log"
 	"os"
 	"path"
+	"strconv"
 	"time"
 )
 
@@ -50,7 +52,16 @@ func CWFile(file string) *os.File {
 func ApiLogToFile() gin.HandlerFunc {
 
 	//日志文件
-	file := path.Join(Yml.Log.ApiLogPath, Yml.Log.ApiLogFile)
+	apiLogPath := common.ApiLogPath
+	if Yml.Log.ApiLogPath != "" {
+		apiLogPath = Yml.Log.ApiLogPath
+	}
+
+	apiLogFile := common.ApiLogFile
+	if Yml.Log.ApiLogFile != "" {
+		apiLogFile = Yml.Log.ApiLogFile
+	}
+	file := path.Join(apiLogPath, apiLogFile)
 	fi := CWFile(file)
 
 	//实例化
@@ -91,9 +102,19 @@ func ApiLogToFile() gin.HandlerFunc {
 }
 
 func SysLogToFile() {
-	MkDir(Yml.Log.SysLogPath)
+	//TODO 程序运行时日志文件被占用，无法进行其他操作
+	sysLogPath := common.SysLogPath
+	if Yml.Log.ApiLogPath != "" {
+		sysLogPath = Yml.Log.SysLogPath
+	}
+
+	sysLogFile := common.SysLogFile
+	if Yml.Log.SysLogFile != "" {
+		sysLogFile = Yml.Log.SysLogFile
+	}
+	MkDir(sysLogPath)
 	//日志文件
-	file := path.Join(Yml.Log.SysLogPath, Yml.Log.SysLogFile)
+	file := path.Join(sysLogPath, sysLogFile)
 	//写入文件
 	fi := CWFile(file)
 
@@ -102,7 +123,11 @@ func SysLogToFile() {
 	//设置输出
 	Syslog.Out = fi
 	//设置日志级别
-	Syslog.SetLevel(Yml.Log.Level)
+	if strconv.Itoa(int(Yml.Log.Level)) != "" {
+		Syslog.SetLevel(Yml.Log.Level)
+	} else {
+		Syslog.SetLevel(common.LogLevel)
+	}
 	//设置日志格式
 	Syslog.SetFormatter(&logrus.JSONFormatter{})
 }

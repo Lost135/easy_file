@@ -1,6 +1,7 @@
 package main
 
 import (
+	"easy_file/src/common"
 	"easy_file/src/config"
 	"easy_file/src/http"
 	"github.com/gin-gonic/gin"
@@ -17,7 +18,11 @@ func main() {
 	config.EtcdDb()
 	//创建路由
 	gin.DefaultWriter = colorable.NewColorableStdout()
-	mode := config.Yml.RunMode
+	//TODO 优化if语句
+	mode := common.RunMode
+	if config.Yml.RunMode != "" {
+		mode = config.Yml.RunMode
+	}
 	gin.SetMode(mode)
 	r := gin.New()
 	//初始化接口日志
@@ -27,6 +32,10 @@ func main() {
 	http.Apis(r)
 	//启动
 	config.CatchInfo("server started success")
-	err := r.Run(":" + config.Yml.Port)
+	port := common.Port
+	if config.Yml.Port != "" {
+		port = config.Yml.Port
+	}
+	err := r.Run(":" + port)
 	config.CatchErr(err)
 }

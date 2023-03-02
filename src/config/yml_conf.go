@@ -1,16 +1,16 @@
 package config
 
 import (
-	"easy_file/src/structs"
+	"easy_file/src/common"
 	"fmt"
 	"gopkg.in/yaml.v3"
 	"os"
 )
 
-var Yml *structs.Conf
+var Yml *common.Conf
 
 func YmlConf() {
-	yamlFile, err := os.ReadFile("../config/conf.yml")
+	yamlFile, err := os.ReadFile(common.ReadFile)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
