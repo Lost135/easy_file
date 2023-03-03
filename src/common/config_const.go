@@ -1,6 +1,8 @@
 package common
 
-import "github.com/sirupsen/logrus"
+import (
+	"github.com/sirupsen/logrus"
+)
 
 const (
 	DeletedNot      = 0
@@ -12,6 +14,9 @@ const (
 	FileRoleWrite   = 2
 	FileRoleRead    = 4
 	PasswordDefault = "password"
+	PublicNot       = 0
+	PublicYse       = 1
+	PublicDefault   = 0
 
 	RunMode    = "debug"
 	Port       = "8090"
@@ -20,8 +25,19 @@ const (
 	ApiLogFile = "apiLog.log"
 	SysLogPath = "./log/"
 	SysLogFile = "sysLog.log"
-	ReadFile   = "../config/conf.yml"
+	ConfigFile = "../config/conf.yml"
 
-	UserPrefix = "/sys/user/"
-	FilePrefix = "/sys/file/"
+	UserPrefix      = "/sys/user/"
+	FilePrefix      = "/sys/file/"
+	FilePathDefault = "./file/"
+
+	UserStatusOffline = 0
+	UserStatusOnline  = 1
+	UserStatusDefault = 0
+
+	RootKey       = "/sys/user/root"
+	RootUsername  = "root"
+	RootPassword  = "password"
+	RootRole      = 7
+	RootCreatedAt = ""
 )

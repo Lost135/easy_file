@@ -10,7 +10,7 @@ import (
 var Yml *common.Conf
 
 func YmlConf() {
-	yamlFile, err := os.ReadFile(common.ReadFile)
+	yamlFile, err := os.ReadFile(common.ConfigFile)
 	if err != nil {
 		fmt.Println(err.Error())
 	}

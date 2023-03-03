@@ -1,6 +1,8 @@
 package config
 
 import (
+	"easy_file/src/common"
+	"easy_file/src/tool"
 	"encoding/json"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"golang.org/x/net/context"
@@ -10,23 +12,7 @@ import (
 var Cli *clientv3.Client
 
 // {username:"root",password:"password",bucket:{default:7},createdAt:"",delFlag:0}
-const (
-	key = "/sys/user/root"
-
-	Username  = "root"
-	Password  = "password"
-	Bucket    = "default"
-	CreatedAt = ""
-	Deleted   = 0
-)
-
-type SysUserKv struct {
-	Username  string `json:"username"`
-	Password  string `json:"password"`
-	Bucket    string `json:"bucket"`
-	CreatedAt string `json:"createdAt"`
-	Deleted   int8   `json:"deleted"`
-}
+const ()
 
 func EtcdDb() {
 	err := recover()
@@ -40,9 +26,26 @@ func EtcdDb() {
 		CatchFatal(err)
 		return
 	}
-	kv := SysUserKv{Username: Username, Password: Password, Bucket: Bucket, CreatedAt: CreatedAt, Deleted: Deleted}
+
+	kv := common.User{
+		Username: common.RootUsername,
+		Password: common.RootPassword,
+		Bucket: common.Bucket{
+			Name: common.BucketDefault,
+			Role: common.RootRole,
+		},
+		Status:    common.UserStatusDefault,
+		CreatedAt: common.RootCreatedAt,
+		Deleted:   common.DeletedDefault,
+	}
 	if Yml.RootPassword != "" {
 		kv.Password = Yml.RootPassword
+	}
+
+	err = tool.EncodePwd(&kv.Password)
+	if err != nil {
+		CatchFatal(err)
+		return
 	}
 	ksM, err2 := json.Marshal(kv)
 	if err2 != nil {
@@ -60,12 +63,12 @@ func EtcdDb() {
 
 func InitSysUser(kv []byte) error {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	res, err := Cli.Get(ctx, key)
+	res, err := Cli.Get(ctx, common.RootKey)
 	if err != nil {
 		return err
 	}
 	if res.Kvs == nil {
-		_, err := Cli.Put(ctx, key, string(kv))
+		_, err := Cli.Put(ctx, common.RootKey, string(kv))
 		if err != nil {
 			return err
 		}

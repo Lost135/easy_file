@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	//初始化yml配置文件
 	config.YmlConf()
 	//初始化系统日志

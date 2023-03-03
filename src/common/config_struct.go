@@ -24,17 +24,35 @@ type Conf struct {
 }
 
 type User struct {
-	Username  string     `json:"username"`
-	Password  string     `json:"password"`
-	Bucket    string     `json:"bucket"`
-	CreatedAt *time.Time `json:"createdAt"`
-	DelFlag   int8       `json:"delFlag"`
+	Username  string `json:"username"`
+	Password  string `json:"password"`
+	Bucket    `json:"bucket"`
+	Status    int8   `json:"status"`
+	CreatedAt string `json:"createdAt"`
+	Deleted   int8   `json:"deleted"`
+}
+
+type Bucket struct {
+	Name string `json:"name"`
+	Role int8   `json:"role"`
 }
 
 type File struct {
-	Filename  string     `json:"filename"`
-	Path      string     `json:"path"`
-	Bucket    string     `json:"bucket"`
-	CreatedAt *time.Time `json:"createdAt"`
-	DelFlag   int8       `json:"delFlag"`
+	Filename  string `json:"filename"`
+	Path      string `json:"path"`
+	Bucket    string `json:"bucket"`
+	CreatedAt string `json:"createdAt"`
+	Deleted   int8   `json:"deleted"`
+	Public    int8   `json:"public"`
+}
+
+type Auth struct {
+	Token string `json:"token"`
+}
+
+type Claims struct {
+	Exp        time.Time `json:"exp"`
+	Authorized string    `json:"authorized"`
+	UserId     string    `json:"userId"`
+	Username   string    `json:"username"`
 }
