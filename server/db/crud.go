@@ -2,9 +2,9 @@ package db
 
 import (
 	"context"
-	"easy_file/src/common"
-	"easy_file/src/config"
-	"easy_file/src/tool"
+	"easy_file/server/common"
+	"easy_file/server/config"
+	"easy_file/server/tool"
 	"encoding/json"
 	"errors"
 	"fmt"

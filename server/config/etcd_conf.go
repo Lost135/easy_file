@@ -1,8 +1,8 @@
 package config
 
 import (
-	"easy_file/src/common"
-	"easy_file/src/tool"
+	"easy_file/server/common"
+	"easy_file/server/tool"
 	"encoding/json"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"golang.org/x/net/context"

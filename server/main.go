@@ -1,9 +1,9 @@
 package main
 
 import (
-	"easy_file/src/common"
-	"easy_file/src/config"
-	"easy_file/src/http"
+	"easy_file/server/common"
+	"easy_file/server/config"
+	"easy_file/server/http"
 	"github.com/gin-gonic/gin"
 	"github.com/mattn/go-colorable"
 )

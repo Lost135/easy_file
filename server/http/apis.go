@@ -1,9 +1,9 @@
 package http
 
 import (
-	"easy_file/src/common"
-	"easy_file/src/config"
-	"easy_file/src/db"
+	"easy_file/server/common"
+	"easy_file/server/config"
+	"easy_file/server/db"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

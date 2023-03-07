@@ -1,7 +1,7 @@
 package tool
 
 import (
-	"easy_file/src/common"
+	"easy_file/server/common"
 	"github.com/golang-jwt/jwt/v5"
 )
 

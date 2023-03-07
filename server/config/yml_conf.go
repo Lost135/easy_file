@@ -1,7 +1,7 @@
 package config
 
 import (
-	"easy_file/src/common"
+	"easy_file/server/common"
 	"fmt"
 	"gopkg.in/yaml.v3"
 	"os"

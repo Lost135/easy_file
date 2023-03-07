@@ -1,7 +1,7 @@
 package config
 
 import (
-	"easy_file/src/common"
+	"easy_file/server/common"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
