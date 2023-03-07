@@ -28,6 +28,7 @@ const (
 	ConfigFile = "../config/conf.yml"
 
 	UserPrefix      = "/sys/user/"
+	TokenPrefix     = "/sys/token/"
 	FilePrefix      = "/sys/file/"
 	FilePathDefault = "./file/"
 
@@ -40,4 +41,9 @@ const (
 	RootPassword  = "password"
 	RootRole      = 7
 	RootCreatedAt = ""
+
+	ApiPrefix = "api"
+	Version   = "v1"
+
+	LeaseTimeDefault = int64(24 * 60 * 60)
 )

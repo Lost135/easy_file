@@ -56,3 +56,11 @@ type Claims struct {
 	UserId     string    `json:"userId"`
 	Username   string    `json:"username"`
 }
+
+type UserInfo struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Bucket   `json:"bucket"`
+	Status   int8   `json:"status"`
+	Token    string `json:"token"`
+}

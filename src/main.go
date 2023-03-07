@@ -27,7 +27,6 @@ func main() {
 	//初始化接口日志
 	r.Use(config.ApiLogToFile())
 	//调用api
-	http.SysApi(r)
 	http.Apis(r)
 	//启动
 	config.CatchInfo("server started success")

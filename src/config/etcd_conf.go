@@ -12,7 +12,6 @@ import (
 var Cli *clientv3.Client
 
 // {username:"root",password:"password",bucket:{default:7},createdAt:"",delFlag:0}
-const ()
 
 func EtcdDb() {
 	err := recover()

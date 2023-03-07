@@ -1,6 +1,8 @@
 package tool
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"golang.org/x/crypto/bcrypt"
+)
 
 // EncodePwd 加密
 func EncodePwd(pwd *string) (err error) {
